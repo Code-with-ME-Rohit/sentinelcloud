@@ -4,7 +4,10 @@
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY web/package.json web/package-lock.json* ./
-RUN if [ -f package-lock.json ]; then npm ci; else npm install --no-audit --no-fund; fi
+# Use npm install (not ci) to tolerate optional peer-dep skews across npm versions.
+# Lockfile is still committed; install respects it where it can and resolves
+# the transitive picomatch peer-dep range that npm@10 vs npm@11 disagree on.
+RUN npm install --no-audit --no-fund --prefer-offline
 
 FROM node:22-alpine AS builder
 WORKDIR /app
