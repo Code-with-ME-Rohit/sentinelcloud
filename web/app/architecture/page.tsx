@@ -5,12 +5,12 @@ export const dynamic = 'force-static';
 const layers = [
   {
     name: 'Perception',
-    desc: 'Multimodal ingestion. OTLP traces, JSON logs, Prometheus metrics, GitHub PR diffs, Slack threads — every stream becomes a uniform Signal.',
+    desc: 'Multimodal ingestion. OTLP traces, JSON logs, Prometheus metrics, GitHub PR diffs, Slack threads, every stream becomes a uniform Signal.',
     items: ['OTLP receiver', 'Log shipper', 'Metrics scraper', 'GitHub webhook', 'Slack/Teams adapter'],
   },
   {
     name: 'Reasoning',
-    desc: 'A finite state machine over six agents: Analyst, Devil’s Advocate, Strategist, Tool-Call Critic, Safety, Verifier — plus a Narrator for human summaries.',
+    desc: 'A finite state machine over six agents: Analyst, Devil’s Advocate, Strategist, Tool-Call Critic, Safety, Verifier, plus a Narrator for human summaries.',
     items: ['Analyst', 'Devil’s Advocate', 'Strategist', 'Critic', 'Safety / Compliance', 'Verifier', 'Narrator'],
   },
   {

@@ -10,7 +10,7 @@ export default function DemoIndex() {
     <Section
       kicker="Live demo"
       title="Pick a scenario to run."
-      sub="Each run streams the agents' reasoning as it happens. Refresh and re-run any time — fixtures are deterministic."
+      sub="Each run streams the agents' reasoning as it happens. Refresh and re-run any time, fixtures are deterministic."
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SCENARIOS.map(s => (

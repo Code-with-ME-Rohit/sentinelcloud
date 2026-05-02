@@ -1,5 +1,5 @@
 // Individual agent calls. Each returns an AgentTurn.
-// Errors are absorbed into low-confidence turns rather than thrown — the
+// Errors are absorbed into low-confidence turns rather than thrown, the
 // orchestrator should always be able to make forward progress for the demo.
 
 import { llm, safeJson } from '../llm/gateway';

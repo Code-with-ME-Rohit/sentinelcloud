@@ -20,7 +20,7 @@ export function Footer() {
         <div>
           <div className="text-[var(--color-fg)] font-semibold mb-2">Author</div>
           <ul className="space-y-1.5">
-            <li>Rohit Kumar — GF202220522</li>
+            <li>Rohit Kumar, GF202220522</li>
             <li>BTech CSE Cloud Computing</li>
             <li>Galgotias University</li>
           </ul>

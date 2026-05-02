@@ -18,7 +18,7 @@ const gaps = [
   ['G9', 'Episodic Memory + PRM', 'Past resolutions retrieved by similarity. Per-step quality scored.'],
   ['G10', 'Confidence Calibration', 'Auto-act only above class-specific thresholds; below = human-on-the-loop.'],
   ['G11', 'WAF Rule Synthesizer', 'Given a CVE, drafts a ModSecurity / Cloud Armor rule with TTL and cite.'],
-  ['G12', 'Multimodal Ingestor', 'OTLP, JSON logs, metrics, PR diffs, chat — one normalized envelope.'],
+  ['G12', 'Multimodal Ingestor', 'OTLP, JSON logs, metrics, PR diffs, chat, one normalized envelope.'],
 ];
 
 export default function Home() {
@@ -84,7 +84,7 @@ export default function Home() {
       <Section
         kicker="Open and reproducible"
         title="The whole thing is on GitHub."
-        sub="Source, scenarios, prompts, KPI math — none of it is a black box. Fork it, run it, prove the numbers, write the next paper."
+        sub="Source, scenarios, prompts, KPI math, none of it is a black box. Fork it, run it, prove the numbers, write the next paper."
       >
         <div className="flex flex-wrap items-center gap-3">
           <a
@@ -123,7 +123,7 @@ function Hero() {
           <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] bg-clip-text text-transparent">that thinks before it acts.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-[15.5px] md:text-[16.5px] text-[var(--color-fg-2)] leading-relaxed">
-          SentinelCloud is a closed-loop multi-agent system. It observes signals, debates the root cause, predicts the outcome of a fix, gates the action against a written constitution, and only then acts — or pauses for a human if it is not sure enough. Every step is logged, every claim is a measurable KPI.
+          SentinelCloud is a closed-loop multi-agent system. It observes signals, debates the root cause, predicts the outcome of a fix, gates the action against a written constitution, and only then acts. If it is not sure enough, it pauses for a human. Every step is logged. Every claim is a measurable KPI.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link href="/demo"

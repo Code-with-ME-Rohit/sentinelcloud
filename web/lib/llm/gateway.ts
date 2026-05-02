@@ -156,15 +156,18 @@ type ScenarioCtx =
 
 function sniffScenario(userPrompt: string): ScenarioCtx {
   // Order matters: most-specific tokens first, since the topology JSON repeats
-  // every service name across every scenario.
+  // every service name across every scenario. Title-based markers (used by the
+  // narrator prompt) come ahead of telemetry markers so any phase recognises
+  // the scenario.
   const u = userPrompt.toLowerCase();
   if (u.includes('cve-2026') || u.includes('libcrypto-flex')) return 'cve';
-  if (u.includes('asn') && u.includes('/api/checkout')) return 'ddos';
-  if (u.includes('virtualservice') && u.includes('weights')) return 'drift';
-  if (u.includes('cpu_p95_30d_pct') || u.includes('projectedsavingsusd')) return 'finops';
-  if (u.includes('http_p99_ms') && u.includes('retry_rate_per_sec')) return 'cascading';
-  if (u.includes('pg_pool_active') || u.includes('pg_pool_wait_seconds')) return 'dbpool';
-  if (u.includes('oomkilled') && u.includes('payments-api')) return 'memleak';
+  if (u.includes('zero-day') || u.includes('libcrypto')) return 'cve';
+  if (u.includes('credential-stuff') || u.includes('credential stuff') || u.includes('layer-7') || (u.includes('asn') && u.includes('checkout'))) return 'ddos';
+  if (u.includes('manual mesh weight') || u.includes('out-of-band') || (u.includes('virtualservice') && u.includes('weights'))) return 'drift';
+  if (u.includes('over-provisioned') || u.includes('right_size') || u.includes('right-size') || u.includes('cpu_p95_30d_pct')) return 'finops';
+  if (u.includes('cascading failure') || u.includes('fraud-check timeout') || (u.includes('http_p99_ms') && u.includes('retry_rate_per_sec'))) return 'cascading';
+  if (u.includes('connection pool') || u.includes('orders-db connection') || u.includes('pg_pool_active') || u.includes('pg_pool_wait_seconds')) return 'dbpool';
+  if (u.includes('memory leak') || (u.includes('payments-api') && (u.includes('oomkilled') || u.includes('memory')))) return 'memleak';
   return 'generic';
 }
 

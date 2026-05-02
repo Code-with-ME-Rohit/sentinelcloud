@@ -213,7 +213,7 @@ function TurnCard({ turn }: { turn: any }) {
       <div className="flex items-center justify-between mb-1.5">
         <div className={`text-[11px] uppercase tracking-wider px-2 py-0.5 rounded border ${tone[role] || ''}`}>{role}</div>
         <div className="text-[11px] text-[var(--color-fg-3)] font-mono tabular-nums">
-          conf {turn.confidence?.toFixed?.(2) ?? '—'} · {turn.latencyMs ?? 0}ms
+          conf {turn.confidence?.toFixed?.(2) ?? '-'} · {turn.latencyMs ?? 0}ms
         </div>
       </div>
       <p className="text-[13.5px] leading-relaxed text-[var(--color-fg-2)]">{turn.thought}</p>

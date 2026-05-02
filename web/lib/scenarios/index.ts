@@ -1,4 +1,4 @@
-// Deterministic scenario fixtures (Gap G7 — reproducibility).
+// Deterministic scenario fixtures (Gap G7, reproducibility).
 // Each scenario is byte-for-byte stable so KPI claims are auditable.
 
 import type { Scenario, Topology } from '../types';

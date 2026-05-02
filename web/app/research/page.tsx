@@ -55,7 +55,7 @@ export default function Research() {
             <h3 className="text-[18px] font-semibold mt-6 mb-2">Baselines we compare against</h3>
             <ul className="text-[14px] text-[var(--color-fg-2)] space-y-1.5">
               {baselines.map(([b, d]) => (
-                <li key={b}><b className="text-[var(--color-fg)]">{b}</b> — {d}</li>
+                <li key={b}><b className="text-[var(--color-fg)]">{b}</b>, {d}</li>
               ))}
             </ul>
 

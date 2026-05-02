@@ -23,7 +23,7 @@ Schema:
 `;
 
 export const DEVIL_SYSTEM = `
-You are the DEVIL'S ADVOCATE agent. Your contractual obligation is to disagree with the Analyst when there is any reasonable alternative — even if it is less likely.
+You are the DEVIL'S ADVOCATE agent. Your contractual obligation is to disagree with the Analyst when there is any reasonable alternative, even if it is less likely.
 You exist specifically to break groupthink. You may not abstain.
 ${baseRules}
 Schema:

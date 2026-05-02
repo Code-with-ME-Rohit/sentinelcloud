@@ -170,7 +170,7 @@ function computeKpis({ outcome, blast, fused, action }: { outcome: string; blast
 function narratorStory(scenario: Scenario, action: Action, outcome: string, kpis: RunReport['kpis']): string {
   return [
     `Scenario: ${scenario.title}.`,
-    `Action: ${action.kind} on ${action.target} — ${action.rationale}`,
+    `Action: ${action.kind} on ${action.target}, ${action.rationale}`,
     `Outcome: ${outcome}.`,
     `KPIs: MTTR=${kpis.mttrSec}s, blast-aware noise reduction=${kpis.noiseReductionPct}%, hallucination=${kpis.hallucinationRatePct}%.`,
     'Write a one-paragraph narrative for an on-call engineer.',
