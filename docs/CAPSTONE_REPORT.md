@@ -800,7 +800,7 @@ gcloud auth application-default login
 export GOOGLE_CLOUD_PROJECT=<your-project-id>
 export SENTINEL_LLM_PROVIDER=vertex
 export SENTINEL_VERTEX_REGION=asia-east1
-export SENTINEL_VERTEX_MODEL=gemini-2.5-pro
+export SENTINEL_VERTEX_MODEL=gemini-2.5-flash
 pnpm run dev
 ```
 

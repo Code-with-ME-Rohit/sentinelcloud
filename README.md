@@ -252,7 +252,7 @@ Required environment variables:
 | `SENTINEL_ADMIN_EMAILS` | Comma-separated list of Google sign-in emails allowed to trigger write actions in connector mode. | `divyamohan1993@gmail.com` |
 | `SENTINEL_DISABLE_VERTEX` | Set truthy to disable Vertex AI even when ADC is present. | unset |
 | `SENTINEL_DISABLE_CLAUDE` | Set truthy to disable Claude even when a key is present. | unset |
-| `SENTINEL_GEMINI_MODEL` | Vertex Gemini model id. | `gemini-2.5-pro` |
+| `SENTINEL_GEMINI_MODEL` | Vertex Gemini model id. | `gemini-2.5-flash` |
 | `SENTINEL_GEMINI_FAST_MODEL` | Cheaper Gemini variant for the Critic agent. | `gemini-2.5-flash` |
 | `SENTINEL_CLAUDE_MODEL` | Anthropic model id. | `claude-opus-4-7` |
 | `SENTINEL_FIRESTORE_DB` | Firestore database id. | `(default)` |

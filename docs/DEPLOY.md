@@ -173,7 +173,7 @@ gcloud run deploy sentinelcloud \
   --cpu 1 \
   --allow-unauthenticated \
   --port 8080 \
-  --set-env-vars "SENTINEL_REGION=asia-east1,SENTINEL_GEMINI_MODEL=gemini-2.5-pro" \
+  --set-env-vars "SENTINEL_REGION=asia-east1,SENTINEL_GEMINI_MODEL=gemini-2.5-flash" \
   --set-secrets "ANTHROPIC_API_KEY=ANTHROPIC_API_KEY:latest,SENTINEL_ADMIN_EMAILS=SENTINEL_ADMIN_EMAILS:latest"
 ```
 
@@ -190,7 +190,7 @@ gcloud run deploy sentinelcloud \
   --cpu 1 \
   --allow-unauthenticated \
   --port 8080 \
-  --set-env-vars "SENTINEL_REGION=asia-east1,SENTINEL_GEMINI_MODEL=gemini-2.5-pro" \
+  --set-env-vars "SENTINEL_REGION=asia-east1,SENTINEL_GEMINI_MODEL=gemini-2.5-flash" \
   --set-secrets "SENTINEL_ADMIN_EMAILS=SENTINEL_ADMIN_EMAILS:latest"
 ```
 
