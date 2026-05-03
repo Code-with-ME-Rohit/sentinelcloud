@@ -22,17 +22,17 @@ export function Footer() {
         <div>
           <div className="text-[var(--color-fg)] font-semibold mb-2">Author</div>
           <ul className="space-y-1.5">
-            <li>Rohit Kumar, GF202220522</li>
+            <li>Rohit Kumar</li>
+            <li>GF202220522</li>
             <li>BTech CSE Cloud Computing</li>
-            <li>Galgotias University</li>
           </ul>
         </div>
         <div>
-          <div className="text-[var(--color-fg)] font-semibold mb-2">Capstone</div>
+          <div className="text-[var(--color-fg)] font-semibold mb-2">Institution</div>
           <ul className="space-y-1.5">
-            <li>BTech CSE Cloud Computing</li>
             <li>Yogananda School of AI</li>
             <li>Shoolini University</li>
+            <li>Solan, H.P., India</li>
             <li>May 2026</li>
           </ul>
         </div>

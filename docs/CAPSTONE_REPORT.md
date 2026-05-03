@@ -998,7 +998,7 @@ This report is the formal capstone document for the BTech Computer Science and E
 **Live Artefact:** https://sentinelcloud.dmj.one
 **Source Repository:** https://github.com/divyamohan1993/sentinelcloud
 
-The work was carried out under the mentorship of Divya Mohan at dmj.one. The agent contract, the orchestration state machine, the policy engine, the blast-radius calculator, the calibration gate, the episodic memory, and the deterministic scenario engine are the author's contribution. The architectural framing and the engineering disciplines applied to the build (the observability rule, the offline-first rule, the privacy rule, the testing rule) are the dmj.one house style and are documented in the project's CLAUDE.md.
+The work was carried out under the supervision of the assigned faculty mentor at the Yogananda School of AI, Computers and Data Sciences, Shoolini University. The agent contract, the orchestration state machine, the policy engine, the blast-radius calculator, the calibration gate, the episodic memory, and the deterministic scenario engine are the author's contribution. The architectural framing and the engineering disciplines applied to the build (the observability rule, the offline-first rule, the privacy rule, the testing rule) are documented in the project repository.
 
 The work serves the AatmaNirbhar Bharat 2047 mission. The artefact is published under an open licence so that any small-town operator on a slow phone with a bad internet connection can run a critical incident through SentinelCloud, see the agent debate, see the policy gate, see the blast radius, and decide what to do.
 

@@ -24,14 +24,17 @@ import { COVER, REPORT_SECTIONS, VIVA_QUESTIONS, REFERENCES, type ReportSection 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const FONT = 'Times New Roman';
-const BODY_SIZE = 24; // half-points => 12pt
-const SMALL = 22;     // 11pt
-const COVER_TITLE_SIZE = 56; // 28pt
-const COVER_SUB_SIZE = 32;   // 16pt
-const H1_SIZE = 32;          // 16pt
-const H2_SIZE = 28;          // 14pt
-const H3_SIZE = 26;          // 13pt
+// Font and sizes chosen to match the supplied template (Calibri / Word
+// defaults) byte-for-byte where the template defines them. Sizes used by
+// the template: 22 (11pt body), 24 (12pt sub), 28 (14pt cover sub) and 36
+// (18pt cover title). Headings stay centred-bold like the template.
+const FONT = 'Calibri';
+const BODY_SIZE = 22;        // 11pt body to match the template
+const COVER_TITLE_SIZE = 36; // 18pt as in template
+const COVER_SUB_SIZE = 28;   // 14pt as in template
+const H1_SIZE = 24;          // 12pt centred section headings
+const H2_SIZE = 22;
+const H3_SIZE = 22;
 
 function p(text: string, opts: Partial<{
   bold: boolean; italic: boolean; size: number; align: typeof AlignmentType[keyof typeof AlignmentType];
@@ -55,10 +58,11 @@ function p(text: string, opts: Partial<{
   });
 }
 
-function heading(text: string, level: typeof HeadingLevel[keyof typeof HeadingLevel], size: number, opts: Partial<{ pageBreakBefore: boolean }> = {}): Paragraph {
+function heading(text: string, level: typeof HeadingLevel[keyof typeof HeadingLevel], size: number, opts: Partial<{ pageBreakBefore: boolean; centered: boolean }> = {}): Paragraph {
   return new Paragraph({
     heading: level,
     pageBreakBefore: opts.pageBreakBefore,
+    alignment: opts.centered ? AlignmentType.CENTER : undefined,
     spacing: { before: 280, after: 160, line: 320 },
     children: [new TextRun({ text, bold: true, size, font: FONT })],
   });
@@ -82,7 +86,7 @@ function makeTable(head: string[], rows: string[][]): Table {
       shading: opts.shaded ? { fill: 'EEEEEE' } : undefined,
       children: [new Paragraph({
         spacing: { line: 280 },
-        children: [new TextRun({ text, bold: opts.bold, size: SMALL, font: FONT })],
+        children: [new TextRun({ text, bold: opts.bold, size: BODY_SIZE, font: FONT })],
       })],
     });
   return new Table({
@@ -116,7 +120,12 @@ function renderSection(s: ReportSection, depth: number = 1): (Paragraph | Table)
   const numbered = s.number ? `${s.number}. ${s.title}` : s.title;
   const headLevel = depth === 1 ? HeadingLevel.HEADING_1 : depth === 2 ? HeadingLevel.HEADING_2 : HeadingLevel.HEADING_3;
   const headSize = depth === 1 ? H1_SIZE : depth === 2 ? H2_SIZE : H3_SIZE;
-  out.push(heading(numbered, headLevel, headSize, { pageBreakBefore: depth === 1 && !!s.number }));
+  // Top-level section headings are centred and bold to match the template's
+  // existing major headings (Acknowledgement, Abstract, etc.).
+  out.push(heading(numbered, headLevel, headSize, {
+    pageBreakBefore: depth === 1 && !!s.number,
+    centered: depth === 1,
+  }));
   for (const para of s.body || []) out.push(p(para, { align: AlignmentType.JUSTIFIED }));
   if (s.bullets) out.push(...bulletList(s.bullets));
   if (s.code) out.push(code(s.code));
@@ -158,15 +167,15 @@ function buildDocument(): Document {
   blocks.push(p(`Source: ${COVER.repoUrl}`, { align: AlignmentType.CENTER, size: 20 }));
 
   // Acknowledgement
-  blocks.push(heading('Acknowledgement', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  blocks.push(heading('Acknowledgement', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   for (const para of REPORT_SECTIONS[0].body || []) blocks.push(p(para, { align: AlignmentType.JUSTIFIED }));
 
   // Abstract
-  blocks.push(heading('Abstract', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  blocks.push(heading('Abstract', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   for (const para of REPORT_SECTIONS[1].body || []) blocks.push(p(para, { align: AlignmentType.JUSTIFIED }));
 
   // Table of Contents
-  blocks.push(heading('Table of Contents', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  blocks.push(heading('Table of Contents', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   blocks.push(p('Acknowledgement'));
   blocks.push(p('Abstract'));
   blocks.push(p('List of Figures'));
@@ -176,7 +185,7 @@ function buildDocument(): Document {
   blocks.push(p('References'));
 
   // List of Figures
-  blocks.push(heading('List of Figures', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  blocks.push(heading('List of Figures', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   const FIGURES = [
     'Figure 1. Three-layer brain: perception, reasoning, actuation.',
     'Figure 2. Twelve-phase orchestrator state machine.',
@@ -187,7 +196,7 @@ function buildDocument(): Document {
   for (const f of FIGURES) blocks.push(p(f));
 
   // List of Tables
-  blocks.push(heading('List of Tables', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  blocks.push(heading('List of Tables', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   const TABLES = [
     'Table 1. Twelve research gaps mapped to twelve modules.',
     'Table 2. Stack of choices, with the one-line justification each.',
@@ -203,7 +212,8 @@ function buildDocument(): Document {
   }
 
   // Viva Questions
-  blocks.push(heading('Viva Questions', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  // The template literally says "Questions:" — keep the same wording.
+  blocks.push(heading('Questions:', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   blocks.push(p('These ten questions follow the Yogananda School of AI capstone format and are answered here as part of the report itself.', { align: AlignmentType.JUSTIFIED }));
   VIVA_QUESTIONS.forEach((vq, i) => {
     blocks.push(new Paragraph({
@@ -217,7 +227,7 @@ function buildDocument(): Document {
   });
 
   // References
-  blocks.push(heading('References', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true }));
+  blocks.push(heading('References', HeadingLevel.HEADING_1, H1_SIZE, { pageBreakBefore: true, centered: true }));
   REFERENCES.forEach((r, i) => {
     blocks.push(new Paragraph({
       spacing: { line: 300, after: 80 },
