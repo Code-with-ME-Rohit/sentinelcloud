@@ -24,6 +24,11 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  // Pin the standalone tracing root to the web directory so the artefact
+  // always lands at .next/standalone/server.js. Without this, Next 16's
+  // workspace detection can place the artefact under nested folders that
+  // depend on the absolute path of the build host.
+  outputFileTracingRoot: __dirname,
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: { serverActions: { bodySizeLimit: '2mb' } },

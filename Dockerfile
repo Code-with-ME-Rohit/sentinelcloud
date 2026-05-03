@@ -24,10 +24,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=8080
 ENV HOSTNAME=0.0.0.0
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
-# Next.js 16 standalone output places the runtime under
-# `.next/standalone/sentinelcloud/web/` when the build context is the repo root.
-# We flatten that here so the entrypoint stays `node server.js`.
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone/sentinelcloud/web/ ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 USER nextjs
