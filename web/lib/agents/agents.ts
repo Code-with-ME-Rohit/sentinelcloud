@@ -97,7 +97,7 @@ export async function runSafety(
 ): Promise<AgentTurn> {
   const user = `Proposed action:\n${JSON.stringify(proposal)}\n\nPolicy constitution:\n${policyText}\n\nList violations or return [].`;
   const { result: j, r } = await callJson<any>(
-    { system: SAFETY_SYSTEM, user, json: true, temperature: 0.1, maxOutputTokens: 1024 },
+    { system: SAFETY_SYSTEM, user, json: true, temperature: 0.1, maxOutputTokens: 2048 },
     'thought',
   );
   return turn({
@@ -141,7 +141,7 @@ export async function runStrategist(
 export async function runVerifier(runId: string, proposal: Action, signals: Signal[]): Promise<AgentTurn> {
   const user = `Proposal:\n${JSON.stringify(proposal)}\n\nPre-action signals:\n${evidenceBlob(signals)}\n\nIndependently predict the outcome. Disagree if warranted.`;
   const { result: j, r } = await callJson<any>(
-    { system: VERIFIER_SYSTEM, user, json: true, temperature: 0.2, maxOutputTokens: 1536 },
+    { system: VERIFIER_SYSTEM, user, json: true, temperature: 0.2, maxOutputTokens: 2048 },
     'thought',
   );
   return turn({
