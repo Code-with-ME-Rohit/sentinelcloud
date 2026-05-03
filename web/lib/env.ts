@@ -5,8 +5,8 @@ const truthy = (v: string | undefined) => v != null && /^(1|true|yes|on)$/i.test
 export const env = {
   PROJECT_ID: process.env.GOOGLE_CLOUD_PROJECT || process.env.GCP_PROJECT || 'dmjone',
   REGION: process.env.SENTINEL_REGION || 'asia-east1',
-  GEMINI_MODEL: process.env.SENTINEL_GEMINI_MODEL || 'gemini-2.5-pro',
-  GEMINI_FAST_MODEL: process.env.SENTINEL_GEMINI_FAST_MODEL || 'gemini-2.5-flash',
+  GEMINI_MODEL: process.env.SENTINEL_GEMINI_MODEL || 'gemini-2.5-flash',
+  GEMINI_FAST_MODEL: process.env.SENTINEL_GEMINI_FAST_MODEL || 'gemini-2.5-flash-lite',
   CLAUDE_MODEL: process.env.SENTINEL_CLAUDE_MODEL || 'claude-opus-4-7',
   CLAUDE_API_KEY: process.env.ANTHROPIC_API_KEY || '',
   ALLOW_VERTEX: !truthy(process.env.SENTINEL_DISABLE_VERTEX),
