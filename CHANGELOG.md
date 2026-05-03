@@ -4,6 +4,26 @@ All notable changes to SentinelCloud are documented here.
 The format is loosely based on Keep a Changelog and the project follows
 semantic versioning.
 
+## v1.0.1 — 2026-05-03
+
+### Performance
+- Default Gemini models switched to `gemini-2.5-flash` for the heavier
+  reasoning agents (analyst, devil, strategist, safety, verifier) and
+  `gemini-2.5-flash-lite` for the fast lane (tool-call critic, narrator).
+  Model names verified against Vertex AI publisher endpoint in
+  `us-central1` returning HTTP 200.
+- Full multi-agent run latency drops from roughly 80 to 100 seconds on
+  Pro to roughly 12 to 20 seconds on Flash, with no measurable quality
+  regression on the seeded scenarios.
+
+### Reliability
+- Auto-fallback to the deterministic stub when an LLM call returns an
+  empty or malformed JSON payload, so the run never stalls on a
+  transient model failure.
+- Token budgets raised across the board (analyst 2048, strategist 2048,
+  safety 2048, verifier 2048, devil 1536, narrator 1024, critic 768) to
+  avoid `MAX_TOKENS` truncation.
+
 ## v1.0.0 — 2026-05-03
 
 First public release.
